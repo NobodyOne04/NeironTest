@@ -1,2 +1,8 @@
-﻿  Model.cpp
+﻿  File.cpp
+c:\users\vladislav\documents\cppproject\model\model\workwithdata\file.cpp(6): warning C4129: D: неизвестная escape-последовательность
+c:\users\vladislav\documents\cppproject\model\model\workwithdata\file.cpp(6): warning C4129: e: неизвестная escape-последовательность
+c:\users\vladislav\documents\cppproject\model\model\workwithdata\file.cpp(20): warning C4129: D: неизвестная escape-последовательность
+c:\users\vladislav\documents\cppproject\model\model\workwithdata\file.cpp(20): warning C4129: w: неизвестная escape-последовательность
+c:\users\vladislav\documents\cppproject\model\model\workwithdata\file.cpp(33): warning C4129: D: неизвестная escape-последовательность
+c:\users\vladislav\documents\cppproject\model\model\workwithdata\file.cpp(33): warning C4129: w: неизвестная escape-последовательность
   Model.vcxproj -> C:\Users\Vladislav\Documents\cppProject\Model\Debug\Model.exe

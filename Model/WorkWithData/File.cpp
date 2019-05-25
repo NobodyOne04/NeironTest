@@ -7,6 +7,7 @@ void File::readExample(int* x, bool& ans, int size) {
 	int buff;
 	for (int i = 0;i < size;i++) {
 		input >> buff;
+		std::cout << buff << endl;
 		x[i] = buff;
 	}
 	input >> ans;

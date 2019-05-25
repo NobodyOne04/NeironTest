@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <cstring>
 #include "Interfaces\Learn.h"
 #include "Interfaces\Check.h"
 
@@ -14,7 +15,7 @@ void showHelp() {
 int convertIteration(char* arg) {
 	int iter;
 	try {
-		iter = int(arg);
+		iter = atoi(arg);
 		throw arg;
 	}
 	catch (char* arg) {
@@ -24,18 +25,18 @@ int convertIteration(char* arg) {
 }
 
 /* Обработка параметров командной строки. */
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 	int	 size = 15;
-	if (argv[1] == "-h") {
+	if (!strcmp(argv[1],"-h")) {
 		showHelp();
 		return 0;
 	};
-	if (argv[2] == "-learn") {
+	if (!strcmp(argv[1],"-learn")) {
 		Learn model(size);
 		model.makeLearn(convertIteration(argv[3]));
 		return 0;
 	};
-	if (argv[2] == "-check") {
+	if (!strcmp(argv[1],"-check")) {
 		Check model(size);
 		model.makeCheck(convertIteration(argv[3]));
 		return 0;
