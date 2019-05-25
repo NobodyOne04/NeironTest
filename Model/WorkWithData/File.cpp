@@ -1,6 +1,6 @@
-#include "..\Interfaces\File.h"
+п»ї#include "..\Interfaces\File.h"
 
-/* Читает файл с примером. */
+/* Р§РёС‚Р°РµС‚ С„Р°Р№Р» СЃ РїСЂРёРјРµСЂРѕРј. */
 void File::readExample(int* x, bool& ans, int size) {
 	ifstream input;
 	input.open("..\Data\example.txt");
@@ -14,7 +14,7 @@ void File::readExample(int* x, bool& ans, int size) {
 	input.close();
 }
 
-/* Читает веса из файла. */
+/* Р§РёС‚Р°РµС‚ РІРµСЃР° РёР· С„Р°Р№Р»Р°. */
 void File::readWeight(int* weight, int& size) {
 	ifstream input;
 	input.open("..\Data\weight.txt");
@@ -27,7 +27,7 @@ void File::readWeight(int* weight, int& size) {
 	input.close();
 }
 
-/* Записывает веса полученые в процессе обучения в файл. */
+/* Р—Р°РїРёСЃС‹РІР°РµС‚ РІРµСЃР° РїРѕР»СѓС‡РµРЅС‹Рµ РІ РїСЂРѕС†РµСЃСЃРµ РѕР±СѓС‡РµРЅРёСЏ РІ С„Р°Р№Р». */
 void File::writeWeight(int* weight, int& size) {
 	ofstream output;
 	output.open("..\Data\weight.txt");

@@ -1,6 +1,6 @@
-#include "..\Interfaces\Check.h"
+п»ї#include "..\Interfaces\Check.h"
 
-/* Подсчет и вывод статистики. */
+/* РџРѕРґСЃС‡РµС‚ Рё РІС‹РІРѕРґ СЃС‚Р°С‚РёСЃС‚РёРєРё. */
 void Check::makeCheck(int col) {
 	float rights = 0.0;
 	for (int i = 0;i < col;i++) {

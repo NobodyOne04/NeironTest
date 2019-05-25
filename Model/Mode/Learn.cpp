@@ -1,6 +1,6 @@
-#include "..\Interfaces\Learn.h"
+п»ї#include "..\Interfaces\Learn.h"
 
-/* Изменение весов. */
+/* РР·РјРµРЅРµРЅРёРµ РІРµСЃРѕРІ. */
 void Learn::changeWeight() {
 	Base::makePredict();
 	if (Base::result == Base::ans)return;
@@ -10,7 +10,7 @@ void Learn::changeWeight() {
 		if (Base::x[i] != 0) Base::weight[i] += inc;
 }
 
-/* Реализует процесс обучения. */
+/* Р РµР°Р»РёР·СѓРµС‚ РїСЂРѕС†РµСЃСЃ РѕР±СѓС‡РµРЅРёСЏ. */
 void Learn::makeLearn(int col) {
 	for (int i = 0;i < col;i++) {
 		if (i % 3 == 0) {

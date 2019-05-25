@@ -1,8 +1,8 @@
-#include "..\Interfaces\Base.h"
+п»ї#include "..\Interfaces\Base.h"
 
 using namespace std;
 
-/* Конструктор, реализующий выделение памяти. */
+/* РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ, СЂРµР°Р»РёР·СѓСЋС‰РёР№ РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё. */
 	Base::Base(int size) {
 		this->x	     = new int[size];
 		this->weight = new int[size];
@@ -11,36 +11,36 @@ using namespace std;
 		this->size = size;
 	}
 
-	/* Записывает веса из файла. */
+	/* Р—Р°РїРёСЃС‹РІР°РµС‚ РІРµСЃР° РёР· С„Р°Р№Р»Р°. */
 	void Base::setWeight() {
 		f.readWeight(this->weight, this->size);
 	}
 
-	/* Записывает сигналы из файла. */
+	/* Р—Р°РїРёСЃС‹РІР°РµС‚ СЃРёРіРЅР°Р»С‹ РёР· С„Р°Р№Р»Р°. */
 	void Base::setX() {
 		f.readExample(this->x, this->ans, this->size);
 	}
 
-	/* Сохраняет веса в файл. */
+	/* РЎРѕС…СЂР°РЅСЏРµС‚ РІРµСЃР° РІ С„Р°Р№Р». */
 	void Base::saveWeight() {
 		f.writeWeight(this->weight, this->size);
 	}
 
-	/* Выводит веса на экран. */
+	/* Р’С‹РІРѕРґРёС‚ РІРµСЃР° РЅР° СЌРєСЂР°РЅ. */
 	void Base::getWeight() {
 		for (int i = 0;i < this->size;i++)
 			cout << this->weight[i] << " ";
 		cout << endl;
 	}
 
-	/* Реализует суммарный блок. */
+	/* Р РµР°Р»РёР·СѓРµС‚ СЃСѓРјРјР°СЂРЅС‹Р№ Р±Р»РѕРє. */
 	void Base::makeSum() {
 		this->sum = 0;
 		for (int i = 0;i < this->size;i++)
 			this->sum += this->x[i] * this->weight[i];
 	}
 
-	/* Записывает предположение сети в переменную. */
+	/* Р—Р°РїРёСЃС‹РІР°РµС‚ РїСЂРµРґРїРѕР»РѕР¶РµРЅРёРµ СЃРµС‚Рё РІ РїРµСЂРµРјРµРЅРЅСѓСЋ. */
 	void Base::makePredict() {
 		this->makeSum();
 		(this->lim > this->sum) ? (this->result = false) : (this->result = true);
