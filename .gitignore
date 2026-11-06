@@ -1,0 +1,16 @@
+# Visual Studio
+.vs/
+[Dd]ebug/
+[Rr]elease/
+x64/
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.ipch
+*.pch
+*.tlog
+*.log
+
+# CMake / other builds
+build/

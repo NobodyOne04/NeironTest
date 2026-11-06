@@ -1,17 +1,13 @@
-﻿#pragma once
+#pragma once
 #include "Base.h"
-#include <iostream>
 
 /* Класс реализует проверку полученых весов, считает отношение верных предположений к всем. */
 class Check :
 	public Base
 {
 public:
+	using Base::Base;
 
-	/* Конструктор базового класса. */
-	Check(int size):Base(size) {};
-	
-	/* Подсчет и вывод статистики. */
-	void makeCheck(int col);
+	/* Подсчет и вывод статистики на col образцах. verbose — печатать каждый ответ. */
+	void makeCheck(int col, bool verbose);
 };
-

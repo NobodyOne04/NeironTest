@@ -1,47 +1,48 @@
-﻿#include "..\Interfaces\Base.h"
+#include "../Interfaces/Base.h"
+#include <iostream>
 
 using namespace std;
 
-/* Конструктор, реализующий выделение памяти. */
-	Base::Base(int size) {
-		this->x	     = new int[size];
-		this->weight = new int[size];
-		memset(this->x, 0, size);
-		memset(this->weight, 0, size);
-		this->size = size;
-	}
+Base::Base(int size, const string& dataDir)
+	: f(dataDir), weight(size, 0), example(size, 0), x(size, 0) {}
 
-	/* Записывает веса из файла. */
-	void Base::setWeight() {
-		f.readWeight(this->weight, this->size);
-	}
+bool Base::setWeight() {
+	return f.readWeight(weight, lim);
+}
 
-	/* Записывает сигналы из файла. */
-	void Base::setX() {
-		f.readExample(this->x, this->ans, this->size);
-	}
+void Base::setExample() {
+	f.readExample(example, exampleAns);
+}
 
-	/* Сохраняет веса в файл. */
-	void Base::saveWeight() {
-		f.writeWeight(this->weight, this->size);
-	}
+void Base::saveWeight() const {
+	f.writeWeight(weight, lim);
+}
 
-	/* Выводит веса на экран. */
-	void Base::getWeight() {
-		for (int i = 0;i < this->size;i++)
-			cout << this->weight[i] << " ";
-		cout << endl;
-	}
+void Base::getWeight() const {
+	cout << "Weights:";
+	for (int w : weight)
+		cout << " " << w;
+	cout << "\nThreshold: " << lim << endl;
+}
 
-	/* Реализует суммарный блок. */
-	void Base::makeSum() {
-		this->sum = 0;
-		for (int i = 0;i < this->size;i++)
-			this->sum += this->x[i] * this->weight[i];
+void Base::nextSample(int i) {
+	if (i % 3 == 0) {
+		x = example;
+		ans = exampleAns;
 	}
+	else {
+		r.randomeX(x, example);
+		ans = false;
+	}
+}
 
-	/* Записывает предположение сети в переменную. */
-	void Base::makePredict() {
-		this->makeSum();
-		(this->lim > this->sum) ? (this->result = false) : (this->result = true);
-	}
+void Base::makeSum() {
+	sum = 0;
+	for (size_t i = 0; i < weight.size(); i++)
+		sum += x[i] * weight[i];
+}
+
+void Base::makePredict() {
+	makeSum();
+	result = sum >= lim;
+}

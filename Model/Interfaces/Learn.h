@@ -1,21 +1,17 @@
-﻿#pragma once
+#pragma once
 #include "Base.h"
-#include "Randome.h"
 
-/* Класс реализует обучение нейронной сети. */
+/* Класс реализует обучение нейронной сети (правило перцептрона). */
 class Learn :
 	public Base
 {
 private:
-	
-	/* Изменение весов. */
-	void changeWeight();
+	/* Изменение весов и порога. Возвращает true, если сеть ошиблась. */
+	bool changeWeight();
+
 public:
+	using Base::Base;
 
-	/* Конструктор базового класса. */
-	Learn(int size):Base(size) {};
-
-	/* Реализует процесс обучения. */
+	/* Реализует процесс обучения на col образцах. */
 	void makeLearn(int col);
 };
-

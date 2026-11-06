@@ -1,15 +1,17 @@
-﻿#pragma once
-#include <ctime>
-#include "stdlib.h"
+#pragma once
+#include <random>
+#include <vector>
 
-/* Класс реализует генерацию рандомных входных сигналов. */
-	class Randome
-	{
-	public:
+/* Класс реализует генерацию случайных входных сигналов. */
+class Randome
+{
+public:
+	/* Конструктор реализует инициализацию генератора случайных чисел. */
+	Randome();
 
-		/* Конструктор реализует инициализацию генератора случайных чисел. */
-		Randome();
+	/* Заполняет x случайными сигналами 0/1, гарантированно отличными от exclude (эталонного примера). */
+	void randomeX(std::vector<int>& x, const std::vector<int>& exclude);
 
-		/* Генерация рандомного входного сигнала и запись сигнала в массив сигналов. */
-		void randomeX(int& size, int* x, bool& ans);
-	};
+private:
+	std::mt19937 gen;
+};

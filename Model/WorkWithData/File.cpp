@@ -1,38 +1,64 @@
-﻿#include "..\Interfaces\File.h"
+#include "../Interfaces/File.h"
 
-/* Читает файл с примером. */
-void File::readExample(int* x, bool& ans, int size) {
-	ifstream input;
-	input.open("..\Data\example.txt");
-	int buff;
-	for (int i = 0;i < size;i++) {
-		input >> buff;
-		std::cout << buff << endl;
-		x[i] = buff;
-	}
-	input >> ans;
-	input.close();
+#include <fstream>
+#include <stdexcept>
+
+using namespace std;
+
+File::File(string dataDir) : dataDir(std::move(dataDir)) {}
+
+string File::path(const char* name) const {
+	if (dataDir.empty())
+		return name;
+	const char last = dataDir.back();
+	return (last == '/' || last == '\\') ? dataDir + name : dataDir + "/" + name;
 }
 
-/* Читает веса из файла. */
-void File::readWeight(int* weight, int& size) {
-	ifstream input;
-	input.open("..\Data\weight.txt");
-	int buff;
-	input >> size;
-	for (int i = 0;i < size;i++) {
-		input >> buff;
-		weight[i] = buff;
+/* Читает файл с примером. */
+void File::readExample(vector<int>& x, bool& ans) const {
+	const string file = path("example.txt");
+	ifstream input(file);
+	if (!input)
+		throw runtime_error("cannot open " + file);
+	for (int& value : x) {
+		if (!(input >> value) || (value != 0 && value != 1))
+			throw runtime_error(file + ": expected " + to_string(x.size()) + " signals (0 or 1)");
 	}
-	input.close();
+	int answer;
+	if (!(input >> answer) || (answer != 0 && answer != 1))
+		throw runtime_error(file + ": expected answer (0 or 1) after the signals");
+	ans = answer == 1;
+}
+
+/* Читает веса из файла. Формат: размер, веса, порог (порог — необязателен для старых файлов). */
+bool File::readWeight(vector<int>& weight, int& lim) const {
+	const string file = path("weight.txt");
+	ifstream input(file);
+	if (!input)
+		return false;
+	size_t size = 0;
+	if (!(input >> size) || size != weight.size())
+		throw runtime_error(file + ": expected " + to_string(weight.size()) + " weights, found " + to_string(size));
+	for (int& value : weight) {
+		if (!(input >> value))
+			throw runtime_error(file + ": not enough weights");
+	}
+	int fileLim;
+	if (input >> fileLim)
+		lim = fileLim;
+	return true;
 }
 
 /* Записывает веса полученые в процессе обучения в файл. */
-void File::writeWeight(int* weight, int& size) {
-	ofstream output;
-	output.open("..\Data\weight.txt");
-	output << size << endl;
-	for (int i = 0;i < size;i++)
-		output << weight[i] << " ";
-	output.close();
+void File::writeWeight(const vector<int>& weight, int lim) const {
+	const string file = path("weight.txt");
+	ofstream output(file);
+	if (!output)
+		throw runtime_error("cannot write " + file);
+	output << weight.size() << "\n";
+	for (size_t i = 0; i < weight.size(); i++)
+		output << (i ? " " : "") << weight[i];
+	output << "\n" << lim << "\n";
+	if (!output)
+		throw runtime_error("failed writing " + file);
 }

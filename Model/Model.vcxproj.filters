@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Interfaces\Base.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -35,9 +32,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Model.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -60,20 +54,5 @@
   <ItemGroup>
     <Text Include="Data\example.txt" />
     <Text Include="Data\weight.txt" />
-    <Text Include="Debug\model.log" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="Debug\Base.obj" />
-    <Object Include="Debug\Check.obj" />
-    <Object Include="Debug\File.obj" />
-    <Object Include="Debug\Learn.obj" />
-    <Object Include="Debug\model.obj" />
-    <Object Include="Debug\pch.obj" />
-    <Object Include="Debug\Randome.obj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Debug\model.pch" />
-    <None Include="Debug\vc141.idb" />
-    <None Include="Debug\vc141.pdb" />
   </ItemGroup>
 </Project>
