@@ -1,0 +1,28 @@
+# 0002. One perceptron with integer weights and a learned threshold
+
+- Status: Accepted
+- Date: 2026-11-19
+
+The model is a single perceptron over 15 binary inputs. Both the weights and the threshold are
+learned with the classic ±1 perceptron rule, because a fixed threshold can't separate the
+pattern from images that miss a single pixel.
+
+## Technical details
+- **Prediction**: `sum(x[i] * w[i]) >= threshold`, `x` the 15 pixels of a 3×5 image.
+- **Learning** (`Learn::changeWeight`): on a wrong answer, every active input's weight moves
+  by `+1` (false "no") or `-1` (false "yes"), and the threshold moves the opposite way. Correct
+  answers change nothing.
+- **Samples** (`Base`, `Randome`): every third sample is the pattern from `example.txt`
+  (answer 1); the rest are random 15-pixel images guaranteed to differ from it (answer 0).
+- **Persistence**: `-learn` continues from `weight.txt` if it exists (delete it to start from
+  zero) and saves weights and threshold at the end. Format: input count, the weights, the
+  threshold; old files without a threshold line load with threshold 9.
+- **Result** with the committed weights (`2 2 2 2 -5 -5 3 2 1 2 -4 1 1 4 2`, threshold 24):
+  100% on 300,000 check samples.
+- **History**: the 2019 lab had a fixed threshold and file-handling bugs; fixed on 2026-11-07
+  (learned threshold, CMake build, `-data` / `-v` flags).
+
+## Technologies and alternatives
+- Involved: C++17, CMake 3.15+ or Visual Studio (`Model.sln`).
+- Alternatives: fixed threshold (can't separate near-misses); float weights with a learning
+  rate (no gain for binary inputs); a multi-layer network (far more than one pattern needs).

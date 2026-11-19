@@ -71,3 +71,7 @@ without a threshold line are still accepted (threshold defaults to 9).
 | `Model/Mode/Check.cpp` | evaluation |
 | `Model/WorkWithData/File.cpp` | reading/writing data files |
 | `Model/Operation/Randome.cpp` | random noise samples |
+
+## Decisions
+
+Why it is built this way: [docs/adr](docs/adr/README.md).
